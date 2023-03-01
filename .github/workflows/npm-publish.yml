@@ -4,12 +4,9 @@
 name: Node.js Package
 
 on:
-  workflow_dispatch:
-     tags:
-        required: true
-        description: 'Test scenario tags'
-  release:
-    types: [created]
+  push:
+    tags:
+    - 'v*'
 
 jobs:
   build:
