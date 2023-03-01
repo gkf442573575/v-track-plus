@@ -26,5 +26,4 @@ dist-ssr
 *.tar.gz
 .vscode
 
-package-lock.json
 yarn.lock
