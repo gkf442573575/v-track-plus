@@ -80,75 +80,94 @@ export function mergeOptios(
   };
 }
 
+// create board event
+const vTrackBoard = new TrackBoardHandler();
+
+// default track options
+let vTrackOptions: TrackOptions = {
+  baseURL: "",
+};
+
+export function vTrackAddEvt(
+  el: HTMLElement,
+  value: TrackValue,
+  options: TrackOptions,
+  type: string
+) {
+  if (
+    (value.triggerEvent && value.triggerEvent === type) ||
+    !value.triggerEvent
+  ) {
+    const trackParam = mergeOptios(value, options, type);
+    if (!trackParam) {
+      return;
+    }
+    if (/^keyboard:\d+$/.test(type)) {
+      vTrackBoard.add(type, trackParam);
+    } else {
+      el.addEventListener(type, () =>
+        trackParam.callback(
+          trackParam.url,
+          trackParam.trackType,
+          trackParam.params
+        )
+      );
+    }
+  }
+}
+
+export const vTrackDirective: ObjectDirective<
+  HTMLElement,
+  TrackValue | TrackValue[]
+> = {
+  mounted(
+    el: HTMLElement,
+    binding: DirectiveBinding<TrackValue | TrackValue[]>
+  ) {
+    const { arg, value } = binding;
+    const types = arg?.split("|") || [];
+    for (let i = 0; i < types.length; i++) {
+      const type = types[i];
+      /**
+       *  can use array to add event handler
+       */
+      if (value instanceof Array) {
+        for (let j = 0; j < value.length; j++) {
+          const item = value[j];
+          vTrackAddEvt(el, item, vTrackOptions, type);
+        }
+      } else {
+        vTrackAddEvt(el, value, vTrackOptions, type);
+      }
+    }
+  },
+  beforeUnmount(
+    el: HTMLElement,
+    binding: DirectiveBinding<TrackValue | TrackValue[]>
+  ) {
+    /**
+     *  To clear event listener
+     */
+    vTrackBoard.clear();
+    const { arg } = binding;
+    const types = arg?.split("|") || [];
+    for (let index = 0; index < types.length; index++) {
+      const type = types[index];
+      if (!/^keyboard:\d+$/.test(type)) {
+        el.removeEventListener(type, () => null);
+      }
+    }
+  },
+};
+
 const vTrack = {
   install(app: App, options: TrackOptions) {
-    const vTrackBoard = new TrackBoardHandler();
-
-    const addEvt = (el: HTMLElement, value: TrackValue, type: string) => {
-      if (
-        (value.triggerEvent && value.triggerEvent === type) ||
-        !value.triggerEvent
-      ) {
-        const trackParam = mergeOptios(value, options, type);
-        if (!trackParam) {
-          return;
-        }
-        if (/^keyboard:\d+$/.test(type)) {
-          vTrackBoard.add(type, trackParam);
-        } else {
-          el.addEventListener(type, () =>
-            trackParam.callback(
-              trackParam.url,
-              trackParam.trackType,
-              trackParam.params
-            )
-          );
-        }
-      }
+    // merge options
+    vTrackOptions = {
+      ...vTrackOptions,
+      ...options,
     };
-
-    const track: ObjectDirective = {
-      mounted(
-        el: HTMLElement,
-        binding: DirectiveBinding<TrackValue | TrackValue[]>
-      ) {
-        const { arg, value } = binding;
-        const types = arg?.split("|") || [];
-        for (let i = 0; i < types.length; i++) {
-          const type = types[i];
-          /**
-           *  can use array to add event handler
-           */
-          if (value instanceof Array) {
-            for (let j = 0; j < value.length; j++) {
-              const item = value[j];
-              addEvt(el, item, type);
-            }
-          } else {
-            addEvt(el, value, type);
-          }
-        }
-      },
-      beforeUnmount(
-        el: HTMLElement,
-        binding: DirectiveBinding<TrackValue | TrackValue[]>
-      ) {
-        /**
-         *  To clear event listener
-         */
-        vTrackBoard.clear();
-        const { arg } = binding;
-        const types = arg?.split("|") || [];
-        for (let index = 0; index < types.length; index++) {
-          const type = types[index];
-          if (!/^keyboard:\d+$/.test(type)) {
-            el.removeEventListener(type, () => null);
-          }
-        }
-      },
-    };
-
-    app.directive("track", track);
+    app.directive("track", vTrackDirective);
   },
 };
 
