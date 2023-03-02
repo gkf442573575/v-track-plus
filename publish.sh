@@ -1,13 +1,9 @@
 #!/bin/bash
 
-npm view v-track-plus version
+version=$(npm view v-track-plus version)
 
-read -p "请输入版本号: "  publish_version
+echo "v-track-plus now verison : $version"
 
-npm version $publish_version
+read -p "Please enter a new version: "  new_version
 
-
-git push 
-
-
-git push origin --tags
+npm version $new_version
