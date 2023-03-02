@@ -30,8 +30,8 @@ export class TrackBoardHandler {
   }
 
   eventHandler(evt: KeyboardEvent) {
-    const keycode = evt.keyCode;
-    if (!(String(keycode) in this.boardEvtList)) {
+    const keycode = String(evt.keyCode);
+    if (!this.boardEvtList[keycode]) {
       return;
     }
     for (let i = 0; i < this.boardEvtList[keycode].length; i++) {

@@ -5,6 +5,8 @@ name: Node.js Package
 
 on:
   push:
+    branches:
+    - 'main'
     tags:
     - 'v*'
 
@@ -32,6 +34,7 @@ jobs:
 
       - run: npm install
       - run: npm run build
+      - run: echo ${{ github.event.release.tag_name }}
 
       - name: Publish package to NPM 📦
         run: npm publish
