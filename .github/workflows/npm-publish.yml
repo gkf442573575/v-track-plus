@@ -34,8 +34,5 @@ jobs:
       - run: npm run build
 
       
-      - name: Publish tag to npm
-        if: contains(github.ref, 'tags')
-        run: npm publish --new-version "${GITHUB_REF:11}" --access public --no-git-tag-version
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      
+
