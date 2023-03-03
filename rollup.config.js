@@ -9,6 +9,7 @@ const banner = `/**
  * ${pkg.name} ${pkg.version}
  * (c) 2023-${new Date().getFullYear()} ${pkg.author}
  * @license ${pkg.license}
+ * @author ${pkg.author}
  */`;
 
 export default [
