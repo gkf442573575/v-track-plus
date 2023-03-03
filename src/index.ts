@@ -1,4 +1,4 @@
-import type { App, ObjectDirective, DirectiveBinding } from "vue";
+import type { ObjectDirective, DirectiveBinding } from "vue";
 
 export interface TrackOptions {
   baseURL: string;
@@ -161,7 +161,7 @@ export const vTrackDirective: ObjectDirective<
 };
 
 const vTrack = {
-  install(app: App, options: TrackOptions) {
+  install(app: any, options: TrackOptions) {
     // merge options
     vTrackOptions = {
       ...vTrackOptions,

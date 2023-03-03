@@ -18,7 +18,7 @@
     "prebuild": "rimraf dist",
     "push": "git push",
     "push:tag": "git push origin --tags",
-    "publish": "sh ./publish.sh && npm run push && npm run push:tag",
+    "bump": "sh ./publish.sh && npm run push && npm run push:tag",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "gkf442573575@163.com",

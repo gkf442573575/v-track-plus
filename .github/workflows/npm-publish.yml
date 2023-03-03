@@ -20,6 +20,10 @@ jobs:
 
       - run: npm install
       - run: npm run build
+      - run: cp LICENSE dist/
+      - run: cp README.md dist/
+      - run: node rewrite.package.js
+      - run: cd dist/
 
       - name: Publish package to NPM 📦
         run: npm publish
