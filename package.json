@@ -16,9 +16,9 @@
   "scripts": {
     "build": "rollup -c rollup.config.js && rimraf dist/src",
     "prebuild": "rimraf dist",
-    "push": "sudo git push",
-    "push:tag": "sudo git push origin --tags",
-    "publish": "sudo bash ./publish.sh && npm run push && npm run push:tag",
+    "push": "git push",
+    "push:tag": "git push origin --tags",
+    "publish": "sh ./publish.sh && npm run push && npm run push:tag",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "gkf442573575@163.com",
