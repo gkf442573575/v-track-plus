@@ -23,10 +23,9 @@ jobs:
       - run: cp LICENSE dist/
       - run: cp README.md dist/
       - run: node rewrite.package.js
-      - run: cd dist/
 
       - name: Publish package to NPM 📦
-        run: npm publish
+        run: cd dist/ && npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       
