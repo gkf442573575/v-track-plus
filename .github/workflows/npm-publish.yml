@@ -9,7 +9,7 @@ on:
     - 'v*'
 
 jobs:
-  build:
+  publish-npm:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -23,21 +23,10 @@ jobs:
       - run: cp LICENSE dist/
       - run: cp README.md dist/
       - run: node rewrite.package.js
+      - run: cd dist/
+      - run: npm run publish
 
-  publish-npm:
-    needs: build
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v3
-        - uses: actions/setup-node@v3
-          with:
-            node-version: 16
-            registry-url: https://registry.npmjs.org/
-
-        - run: cd dist/
-        - run: npm run publish
-  
-        env:
+      env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      
+          
 
