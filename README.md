@@ -2,6 +2,9 @@
 
 #### Element Track For Vue3
 
+[![NpmVersion](https://img.shields.io/npm/v/v-track-plus.svg)](https://www.npmjs.com/package/v-track-plus)
+![npm](https://img.shields.io/npm/dw/v-track-plus.svg)
+
 ### Install
 
 ```bash
