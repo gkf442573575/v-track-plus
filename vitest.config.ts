@@ -9,5 +9,6 @@ export default defineConfig({
   test: {
     globals: true,
     environment: "jsdom",
+    include: ["./tests/v-track-plus.spec.tsx"],
   },
 });

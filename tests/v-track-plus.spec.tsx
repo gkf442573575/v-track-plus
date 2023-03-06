@@ -1,7 +1,7 @@
 import { nextTick, ref } from "vue";
 import { mount } from "@vue/test-utils";
 
-import { describe, expect, it } from "vitest";
+import { describe, expect, test } from "vitest";
 
 import { vTrackDirective } from "../src/index";
 
@@ -17,7 +17,7 @@ const Component = {
 };
 
 describe("v-track-plus.directive", () => {
-  it("single click", async () => {
+  test("add track by click", async () => {
     const wrap = mount(Component, {
       global: {
         directives: {

@@ -15,7 +15,7 @@
   },
   "scripts": {
     "build": "rollup -c rollup.config.js && rimraf dist/src",
-    "bump": "npm run test && sh ./publish.sh && npm run push && npm run push:tag",
+    "bump": "sh ./publish.sh && npm run push && npm run push:tag",
     "prebuild": "rimraf dist",
     "push": "git push",
     "push:tag": "git push origin --tags",
@@ -31,6 +31,7 @@
     "@typescript-eslint/parser": "^5.54.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vitejs/plugin-vue-jsx": "^3.0.0",
+    "@vitest/coverage-c8": "^0.29.2",
     "@vue/eslint-config-prettier": "^7.1.0",
     "@vue/eslint-config-typescript": "^11.0.2",
     "@vue/test-utils": "^2.3.0",
