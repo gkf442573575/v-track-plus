@@ -10,9 +10,24 @@ const packgeJson = {
   types: "./index.d.ts",
   author: "gkf442573575@163.com",
   license: "MIT",
+  keywords: [
+    "v-track",
+    "v-track-plus",
+    "vue3",
+    "track",
+    "trackjs",
+    "vue3 track",
+    "vue3-track",
+  ],
+  repository: {
+    type: "git",
+    url: "https://github.com/gkf442573575/v-track-plus.git",
+  },
+  bugs: {
+    url: "https://github.com/gkf442573575/v-track-plus/issues",
+  },
+  homepage: "https://github.com/gkf442573575/v-track-plus#readme",
 };
-console.log(path.join(__dirname, "dist"));
-console.log("packgeJson", packgeJson);
 
 fs.writeFileSync(
   path.join(__dirname, "dist/package.json"),
