@@ -15,11 +15,11 @@
   },
   "scripts": {
     "build": "rollup -c rollup.config.js && rimraf dist/src",
+    "bump": "npm run test && sh ./publish.sh && npm run push && npm run push:tag",
     "prebuild": "rimraf dist",
     "push": "git push",
     "push:tag": "git push origin --tags",
-    "bump": "sh ./publish.sh && npm run push && npm run push:tag",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest"
   },
   "author": "gkf442573575@163.com",
   "license": "MIT",
@@ -30,8 +30,10 @@
     "@typescript-eslint/eslint-plugin": "^5.54.0",
     "@typescript-eslint/parser": "^5.54.0",
     "@vitejs/plugin-vue": "^4.0.0",
+    "@vitejs/plugin-vue-jsx": "^3.0.0",
     "@vue/eslint-config-prettier": "^7.1.0",
     "@vue/eslint-config-typescript": "^11.0.2",
+    "@vue/test-utils": "^2.3.0",
     "eslint": "^8.35.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
