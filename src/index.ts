@@ -23,19 +23,22 @@ export interface TrackParam {
 }
 
 export class TrackBoardHandler {
-  private boardEvtList: { [key: string]: TrackParam[] } = {};
+  private boardEvtList: Map<string, TrackParam[]> = new Map();
 
   constructor() {
-    window.addEventListener("keydown", this.eventHandler);
+    window.addEventListener("keydown", (evt: KeyboardEvent) =>
+      this.eventHandler(evt)
+    );
   }
 
   eventHandler(evt: KeyboardEvent) {
     const keycode = String(evt.keyCode);
-    if (!this.boardEvtList[keycode]) {
+    if (!this.boardEvtList.has(keycode)) {
       return;
     }
-    for (let i = 0; i < this.boardEvtList[keycode].length; i++) {
-      const item = this.boardEvtList[keycode][i];
+    const boardEvents = this.boardEvtList.get(keycode) || [];
+    for (let i = 0; i < boardEvents.length; i++) {
+      const item = boardEvents[i];
       item.callback(item.url, item.trackType, item.params);
     }
   }
@@ -44,14 +47,13 @@ export class TrackBoardHandler {
     const keboard = type.split(":");
     if (keboard && keboard[1]) {
       const keycode = keboard[1];
-      this.boardEvtList[keycode]
-        ? this.boardEvtList[keycode].push(boardTrack)
-        : (this.boardEvtList[keycode] = [boardTrack]);
+      const newVal = [boardTrack].concat(this.boardEvtList.get(keycode) || []);
+      this.boardEvtList.set(keycode, newVal);
     }
   }
 
   clear() {
-    this.boardEvtList = {};
+    this.boardEvtList.clear();
   }
 }
 
