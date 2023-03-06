@@ -57,5 +57,5 @@ interface TrackValue {
 ```
 
 ```html
-<div v-track:click|keyboard.13="TrackValue| TrackValue[]"></div>
+<div v-track:click|keyboard:13="TrackValue| TrackValue[]"></div>
 ```
