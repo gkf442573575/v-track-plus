@@ -8,7 +8,7 @@
 ### Install
 
 ```bash
-$ npm install v-track-plus --save-dev
+$ npm install v-track-plus --save
 ```
 
 ### Use
