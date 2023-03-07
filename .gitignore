@@ -27,3 +27,6 @@ dist-ssr
 .vscode
 
 yarn.lock
+
+coverage
+coverage/*

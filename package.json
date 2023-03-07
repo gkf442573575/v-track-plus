@@ -19,7 +19,8 @@
     "prebuild": "rimraf dist",
     "push": "git push",
     "push:tag": "git push origin --tags",
-    "test": "vitest"
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "author": "gkf442573575@163.com",
   "license": "MIT",
