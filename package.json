@@ -4,6 +4,10 @@
   "private": true,
   "version": "0.1.1",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gkf442573575/v-track-plus.git"
+  },
   "keywords": [
     "vue",
     "vue track",
@@ -11,10 +15,11 @@
     "vue track plus"
   ],
   "author": "gkf442573575@163.com",
-  "homepage": "https://github.com/gkf442573575/v-track-plus#readme",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/gkf442573575/v-track-plus/issues"
   },
+  "homepage": "https://github.com/gkf442573575/v-track-plus#readme",
   "scripts": {
     "dev": "vite",
     "bump": "sh ./scripts/publish.sh && npm run push && npm run push:tag",
@@ -23,7 +28,6 @@
     "push": "git push",
     "push:tag": "git push origin --tags"
   },
-  "license": "MIT",
   "dependencies": {
     "dayjs": "^1.11.7",
     "vue": "^3.2.47"

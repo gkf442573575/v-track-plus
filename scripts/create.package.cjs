@@ -8,7 +8,6 @@ const copyFiles = () => {
     name: pkg.name,
     version: pkg.version,
     description: pkg.description,
-    author: pkg.author,
     type: 'module',
     main: './index.umd.js',
     module: './index.js',
@@ -20,10 +19,12 @@ const copyFiles = () => {
         types: './index.d.ts'
       }
     },
+    repository: pkg.repository,
     keywords: pkg.keywords,
+    author: pkg.author,
     license: pkg.license,
+    bugs: pkg.bugs,
     homepage: pkg.homepage,
-    bugs: pkg.bugs
   }
   fs.writeFileSync(path.join(distPath, 'package.json'), JSON.stringify(pkgJson, null, 2), 'utf-8')
   // 重命名一下
