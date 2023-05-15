@@ -17,8 +17,10 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-          
+
+      - run: npm run lib
+
       - name: Publish package to NPM 📦
-        run: npm publish
+        run: cd dist/ && npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

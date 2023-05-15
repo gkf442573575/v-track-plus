@@ -17,9 +17,11 @@
   },
   "scripts": {
     "dev": "vite",
-    "bump": "sh ./scripts/publish.sh && npm run lib",
+    "bump": "sh ./scripts/publish.sh && npm run push && npm run push:tag",
     "build": "vue-tsc --noEmit && vite build",
-    "lib": "rimraf dist && npm run build && sh ./scripts/copy.sh"
+    "lib": "rimraf dist && npm run build && sh ./scripts/copy.sh",
+    "push": "git push",
+    "push:tag": "git push origin --tags"
   },
   "license": "MIT",
   "dependencies": {
