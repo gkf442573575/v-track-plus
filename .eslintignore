@@ -1,0 +1,9 @@
+build/*.js
+src/assets
+public
+dist
+extraResources
+*.cjs
+index.html
+tsconfig.json
+tsconfig.node.json
